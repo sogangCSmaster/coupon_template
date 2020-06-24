@@ -1,0 +1,77 @@
+doctype html
+html(lang="ko")
+    head
+        title 네네치킨 쿠폰 페이지
+        meta(charset="utf-8")
+        meta(name="description" content="네네치킨 쿠폰페이지")
+        meta(name="keywords" content="네네치킨,쿠폰,네네치킨 쿠폰,치킨 쿠폰")
+        meta(property="og:title" content="네네치킨 쿠폰페이지")
+        meta(property="og:description" content="네네치킨 쿠폰 사용 페이지")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no")
+        meta(property="og:image" content="/nene_logo.png")
+        link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css")
+        style.
+            span.darkYelloLine {
+                display: inline-block;
+                width: 57px;
+                height: 5px;
+                background-color: #cfac59;
+            }
+            
+    body(style="background-color: #f0f0f0; font-family: Noto Sans, Noto Sans CJK KR, sans-serif;")
+        .container
+            .row.mt-5
+                .col-sm-12.col-md-6.offset-md-3
+                    .text-center
+                        .container
+                            .row
+                                .col-sm-12
+                                    img.img-fluid(src="/nene_logo.png")
+                        h3.mt-5(style="font-weight: 500 !important; font-size: 36px; margin-bottom: 0px !important;") 쿠폰 사용
+                        span.darkYelloLine
+
+            .row.mt-1
+                .col-sm-12.col-md-6.offset-md-3
+                    .card.shadow.rounded.mb-5
+                        .row
+                            .col-sm-12
+                                img.img-fluid(src="/img1.jpg")
+                                h5.text-white.font-weight-bold.text-center(style="background-color: #f1223c; line-height: 62px;") 쿠폰
+                                .container
+                                    .row
+                                        .col-sm-12.text-center
+                                            small.text-danger.ml-2.mr-2 본 페이지는 가맹점에서 사용하는 페이지입니다.<br/>사용버튼을 누르게 되면 사용처리 되므로 주의해주시길 바랍니다.
+                                .text-center
+                                    span.darkYelloLine
+                                
+                                .container
+                                    .row
+                                        .col-sm-12
+                                            .form-group
+                                                label 매장 선택
+                                                select.form-control.selectpicker(data-show-subtext="true" data-live-search="true")
+                                                    option(data-subtext="강원 홍천군 홍천읍 갈마로") 강원홍천군홍천점
+                                                    option(data-subtext="강원 양구군 방산면 장거리길") 강원양구군방산점
+                                            .form-group
+                                                label 쿠폰 번호 입력
+                                                input.form-control#coupon(type="text" placeholder="AB12-CD34-EF45" style="text-align: center;" onkeyup="this.value = this.value.toUpperCase();")
+                                            .form-group
+                                                button.btn.btn-primary.btn-block(style="background-color: #f1223c; border-color: #f1223c;") 쿠폰 사용하기
+
+                
+                    
+
+        script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous")
+        script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous")
+        script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js")
+        script.
+            $(document).ready(function(){
+                $("#coupon").mask('AAAA-BBBB-CCCC',{'translation': {
+                    A: {pattern: /[A-Za-z0-9]/},
+                    B: {pattern: /[A-Za-z0-9]/},
+                    C: {pattern: /[A-Za-z0-9]/}
+                }});
+            })
