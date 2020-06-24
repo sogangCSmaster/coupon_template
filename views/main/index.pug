@@ -51,8 +51,8 @@ html(lang="ko")
                                             .form-group
                                                 label 매장 선택
                                                 select.form-control.selectpicker(data-show-subtext="true" data-live-search="true")
-                                                    option(data-subtext="강원 홍천군 홍천읍 갈마로") 강원홍천군홍천점
-                                                    option(data-subtext="강원 양구군 방산면 장거리길") 강원양구군방산점
+                                                    option(data-subtext="강원 홍천군 홍천읍 갈마로") dbdf
+                                                    option(data-subtext="강원 양구군 방산면 장거리길") asbd
                                             .form-group
                                                 label 쿠폰 번호 입력
                                                 input.form-control#coupon(type="text" placeholder="AB12-CD34-EF45" style="text-align: center;" onkeyup="this.value = this.value.toUpperCase();")
@@ -69,6 +69,24 @@ html(lang="ko")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js")
         script.
             $(document).ready(function(){
+                var getUrlParameter = function getUrlParameter(sParam) {
+                    var sPageURL = window.location.search.substring(1),
+                        sURLVariables = sPageURL.split('&'),
+                        sParameterName,
+                        i;
+
+                    for (i = 0; i < sURLVariables.length; i++) {
+                        sParameterName = sURLVariables[i].split('=');
+
+                        if (sParameterName[0] === sParam) {
+                            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                        }
+                    }
+                };
+                var coupon = getUrlParameter('coupon');
+                if(coupon){
+                    $("#coupon").val(coupon);
+                }
                 $("#coupon").mask('AAAA-BBBB-CCCC',{'translation': {
                     A: {pattern: /[A-Za-z0-9]/},
                     B: {pattern: /[A-Za-z0-9]/},
