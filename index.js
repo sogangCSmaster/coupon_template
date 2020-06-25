@@ -41,6 +41,8 @@ app.use(methodOverride(function (req, res) {
 
 const main = require('./routes/main');
 app.use(main);
+const admin = require('./routes/admin');
+app.use(admin);
 
 app.use((req,res,next) => {
     res.locals.inspector = config.inspector;
