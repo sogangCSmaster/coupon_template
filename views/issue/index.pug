@@ -1,0 +1,18 @@
+extends ../template/layout
+
+block content
+    .container.mt-5
+        .row
+            .col-md-12
+                h3 쿠폰 발급
+
+        .row.mt-5
+            .col-md-6
+                .form-group
+                    label 만료일
+                    input.form-control(type="text" placeholder="YYYY-MM-DD")
+                .form-group
+                    button.btn.btn-block.btn-primary 발급
+
+            .col-md-6
+                #

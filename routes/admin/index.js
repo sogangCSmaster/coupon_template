@@ -16,7 +16,7 @@ router.route("/admin")
                 return res.render('admin/index', {err: '비밀번호가 일치하지 않습니다.'});
             } else {
                 req.session.admin = config.inspector;
-                return res.send('성공')
+                return res.redirect('/issue');
             }
         }
 

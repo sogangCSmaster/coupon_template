@@ -43,6 +43,8 @@ const main = require('./routes/main');
 app.use(main);
 const admin = require('./routes/admin');
 app.use(admin);
+const issue = require('./routes/issue');
+app.use(issue);
 
 app.use((req,res,next) => {
     res.locals.inspector = config.inspector;
