@@ -2,6 +2,7 @@ doctype html
 html(lang="ko")
     head
         include ./head
+        block head
 
 
     body
@@ -12,10 +13,11 @@ html(lang="ko")
             #navbarNavAltMarkup.collapse.navbar-collapse
                 .navbar-nav
                     a.nav-item.nav-link(href='/issue') 쿠폰 발급
-                    a.nav-item.nav-link(href='#') 쿠폰 사용 현황
-                    a.nav-item.nav-link(href='#') 프랜차이즈
+                    a.nav-item.nav-link(href='/used') 쿠폰 사용 현황
+                    a.nav-item.nav-link(href='/franchise') 프랜차이즈
 
 
         block content
 
         include ./script
+        block script

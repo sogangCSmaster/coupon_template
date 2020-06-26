@@ -1,0 +1,18 @@
+extends ../template/layout
+
+block content
+    .container.mt-5
+        .row
+            .col-md-12
+                table.table.table-striped
+                    thead
+                        tr
+                            th.text-center #
+                            th.text-center 지점
+                            th.text-center 위치
+                    tbody
+                        each location in locations
+                            tr
+                                td.text-center=location.id
+                                td.text-center=location.market
+                                td.text-center=location.marketSub

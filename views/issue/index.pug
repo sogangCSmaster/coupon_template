@@ -10,9 +10,108 @@ block content
             .col-md-6
                 .form-group
                     label 만료일
-                    input.form-control(type="text" placeholder="YYYY-MM-DD")
+                    input.form-control#expiresAt(type="text" placeholder="YYYY-MM-DD")
                 .form-group
-                    button.btn.btn-block.btn-primary 발급
+                    button.btn.btn-block.btn-primary#issue 발급
 
             .col-md-6
-                #
+                .container
+                    .row
+                        .col-md-9.offset-md-3
+                            #couponcard.card(style="border-color: #d09e94; border-width: 17px;background-color: white; width: 375px !important; height: 731px !important; margin-left: -10px !important;")
+                                img.img-responsive.img-fluid(src="/img1.jpg")
+                                .container.bg-white
+                                    .row.mt-3
+                                        .col-sm-6
+                                            h5.text-muted 네네치킨
+                                            h5 ₩30,000 쿠폰
+                                        .col-sm-4.text-center.offset-sm-2
+                                            img.img-responsive.img-fluid(src="/nene_logo.png")
+                                    .row.mt-1
+                                        .col-md-6.text-center.offset-md-3
+                                            canvas.img-fluid.img-responsive#canvas
+                                        
+                                    .row
+                                        .col-md-12.text-center
+                                            h5#couponNum
+                                    .row
+                                        .col-md-12
+                                            table.table
+                                                tbody
+                                                    tr
+                                                        td.text-left <small>교환처</small>
+                                                        td.text-right <small>네네치킨</small>
+                                                    tr
+                                                        td.text-left <small>유효 기간</small>
+                                                        td.text-right <small id="expire"></small>
+
+
+                
+block head
+    link(rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css")
+    style.
+        #couponcard {
+            overflow: -moz-hidden-unscrollable;
+            overflow: hidden;
+            padding: 0px !important;
+            margin: 0px !important;
+        }
+
+block script
+    script(src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js")
+    script(src="/qrcode.min.js")
+    script(src="/html2canvas.min.js")
+    script.
+        $(function() {
+        $("#expiresAt").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: "yy-mm-dd",
+            showMonthAfterYear:true,
+            dayNames: ['일요일','월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+            dayNamesMin: ['일','월', '화', '수', '목', '금', '토'],
+            monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+            
+            });
+        });
+
+    script.
+        function downloadURI(uri, name){
+            var line = docu
+        }
+        $("#issue").on('click', function(){
+            var expiresAt = $("#expiresAt").val();
+            if(!expiresAt){
+                return alert('만료 날짜를 입력해주세요.');
+            }
+            $.ajax({
+                url: '/issue',
+                method: "POST",
+                data: {
+                    expiresAt
+                }
+            }).done(function(res){
+                if(res!='error'){
+                    var qrcode = 'http://' + window.location.host + '?coupon=' + res;
+                    var couponNum = res.match(/.{1,4}/g).join('-');
+                    
+                    QRCode.toCanvas(document.getElementById('canvas'), qrcode, function (error) {
+                        if (error) console.error(error)
+                        console.log('success!');
+                        $("#couponNum").text(couponNum);
+                        $("#expire").text(expiresAt);
+                        html2canvas($("#couponcard")[0], { width: 375, height: 731, scrollX: 0, scrollY: -window.scrollY, scale: 1})
+                            .then(function(canvas) {
+                                var a = document.createElement('a');
+                                a.href = canvas.toDataURL();
+                                console.warn(canvas.toDataURL);
+                                a.download = couponNum + '_cou.png';
+                                document.body.appendChild(a);
+                                a.click();
+                                document.body.removeChild(a);
+                            })
+                    })
+                }
+            })
+        })

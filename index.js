@@ -45,6 +45,10 @@ const admin = require('./routes/admin');
 app.use(admin);
 const issue = require('./routes/issue');
 app.use(issue);
+const franchise = require('./routes/franchise');
+app.use(franchise);
+const used = require('./routes/used');
+app.use(used);
 
 app.use((req,res,next) => {
     res.locals.inspector = config.inspector;

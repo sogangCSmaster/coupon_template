@@ -1,0 +1,28 @@
+extends ../template/layout
+
+block content
+    .container.mt-5
+        .row
+            .col-md-12
+                table.table.table-striped
+                    thead
+                        tr
+                            th.text-center 쿠폰 번호
+                            th.text-center 생성 날짜
+                            th.text-center 만료 날짜
+                            th.text-center 사용 날짜
+                            th.text-center 사용된 곳
+                    tbody
+                        each coupon in coupons
+                            tr
+                                td.text-center=coupon.couponNum
+                                td.text-center=moment(coupon.createdAt).format('YYYY-MM-DD')
+                                td.text-center=moment(coupon.expiresAt).format('YYYY-MM-DD')
+                                if coupon.usedAt
+                                    td.text-center=moment(coupon.usedAt).format('YYYY-MM-DD')
+                                else
+                                    td.text-center -
+                                if coupon.usedLocation
+                                    td.text-center=coupon.usedLocation
+                                else
+                                    td.text-center -
