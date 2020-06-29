@@ -19,7 +19,7 @@ router.route("/")
         }
         data = data[0];
         if(data.usedAt){
-            return res.send('이미 '+data.usedLocation+'에서 사용된 쿠폰입니다.');
+            return res.send('이미 사용된 쿠폰입니다.');
         }
 
         var today = moment().format('YYYY-MM-DD');

@@ -4,6 +4,34 @@ block content
     .container.mt-5
         .row
             .col-md-12
+                .row
+                    .col-md-4
+                        table.table.table-bordered
+                            thead
+                                tr
+                                    th.text-center 전체 발행 쿠폰
+                            tbody
+                                tr
+                                    td.text-center=data.total
+                    .col-md-4
+                        table.table.table-bordered
+                            thead
+                                tr
+                                    th.text-center 사용된 쿠폰
+                            tbody
+                                tr
+                                    td.text-center=(data.total - data.notUsed)
+                    .col-md-4
+                        table.table.table-bordered
+                            thead
+                                tr
+                                    th.text-center 미사용 쿠폰
+                            tbody
+                                tr
+                                    td.text-center=data.notUsed
+                    
+        .row.mt-3
+            .col-md-12
                 table.table.table-striped
                     thead
                         tr

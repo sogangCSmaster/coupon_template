@@ -11,5 +11,13 @@ router.route("/franchise")
         var locations = await query.executeSQL(sql, [config.inspector]);
         res.render('franchise/index', { locations });
     })
+    .delete(checkAdmin)
+    .delete(async(req, res, next) => {
+        var { id } = req.body;
+        var sql = "DELETE FROM location WHERE id=? AND inspector=?";
+        await query.executeSQL(sql, [id, config.inspector]);
+        res.redirect("/franchise");
+    })
+
 
 module.exports = router;

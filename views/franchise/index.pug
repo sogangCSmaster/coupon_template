@@ -4,15 +4,30 @@ block content
     .container.mt-5
         .row
             .col-md-12
+                table.table.table-bordered
+                    thead
+                        tr
+                            th.text-center 등록된 가맹점
+                    tbody
+                        tr
+                            td.text-center=locations.length
+        .row.mt-3
+            .col-md-12
                 table.table.table-striped
                     thead
                         tr
                             th.text-center #
                             th.text-center 지점
                             th.text-center 위치
+                            th.text-center 삭제
                     tbody
                         each location in locations
                             tr
                                 td.text-center=location.id
                                 td.text-center=location.market
                                 td.text-center=location.marketSub
+                                td.text-center
+                                    form(action="/franchise" method="POST")
+                                        input(type="hidden" name="_method" value="DELETE")
+                                        input(type="hidden" name="id" value=location.id)
+                                        button.btn.btn-danger.btn-sm 삭제
